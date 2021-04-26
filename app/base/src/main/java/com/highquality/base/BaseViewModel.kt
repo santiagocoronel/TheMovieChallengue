@@ -16,14 +16,14 @@ abstract class BaseViewModel : ViewModel() {
     var mutableLoading = MutableLiveData<Boolean>()
     var mutableThrowables = MutableLiveData<Throwable?>()
 
-    fun <T> executeSimpleUseCase(useCase: BasicUseCase<T>): Flow<T> = flow {
+    fun <T> executeSimpleUseCase(useCase: BaseUseCase<T>): Flow<T> = flow {
         executeUseCase(useCase, this)
     }.flowOn(Dispatchers.Main)
         .catch { it.printStackTrace() }
         .onEach { }
 
     private suspend fun <T> executeUseCase(
-        useCase: BasicUseCase<T>,
+        useCase: BaseUseCase<T>,
         flowCollector: FlowCollector<T>
     ) {
         flowCollector.emit(useCase.execute())

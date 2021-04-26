@@ -77,8 +77,6 @@ abstract class BaseFragment<T : ViewBinding> : Fragment(),
 
     abstract fun init()
 
-    protected abstract fun screenName(): String
-
     protected open fun hideKeyboard() {
         val view: View? = requireActivity().getCurrentFocus()
         if (view != null) {

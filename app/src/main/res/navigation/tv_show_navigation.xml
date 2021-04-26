@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_show_navigation"
+    app:startDestination="@id/tvShowListFragment">
+
+    <fragment
+        android:id="@+id/tvShowListFragment"
+        android:name="com.example.themoviechallenge.presenter.TvShowListFragment"
+        android:label="fragment_tv_show_list"
+        tools:layout="@layout/fragment_tv_show_list" >
+        <action
+            android:id="@+id/action_tvShowListFragment_to_tvShowDetailFragment"
+            app:destination="@id/tvShowDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tvShowDetailFragment"
+        android:name="com.example.themoviechallenge.presenter.TvShowDetailFragment"
+        android:label="fragment_tv_show_detail"
+        tools:layout="@layout/fragment_tv_show_detail" />
+</navigation>

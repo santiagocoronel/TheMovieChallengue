@@ -3,6 +3,7 @@ package com.example.themoviechallenge
 import android.app.Application
 import android.util.Log
 import com.example.themoviechallenge.module.networkModule
+import com.example.themoviechallenge.module.tvShowModule
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import org.koin.android.ext.koin.androidContext
@@ -21,7 +22,8 @@ class TheMovieChallengeApp : Application() {
             androidContext(this@TheMovieChallengeApp)
             koin.loadModules(
                 listOf(
-                    networkModule
+                    networkModule,
+                    tvShowModule
                 )
             )
             koin.createRootScope()

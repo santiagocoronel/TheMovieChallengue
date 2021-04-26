@@ -10,11 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheMovieChallenge">
-        <activity android:name="com.example.themoviechallenge.presenter.MoviesActivity"></activity>
-        <activity android:name="com.example.themoviechallenge.presenter.MainActivity">
+        <activity android:name="com.example.themoviechallenge.presenter.TvShowActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
