@@ -24,9 +24,13 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled false
+            buildConfigField "String", "APIKEY", "\"19b02e6f1ed49631cf96d8722ad7c7e2\""
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3\""
         }
         release {
+            buildConfigField "String", "APIKEY", "\"19b02e6f1ed49631cf96d8722ad7c7e2\""
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3\""
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
