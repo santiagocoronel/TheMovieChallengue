@@ -1,5 +1,6 @@
 package com.example.themoviechallenge.presenter
 
+import android.widget.Toast
 import com.example.themoviechallenge.databinding.FragmentTvShowListBinding
 import com.example.themoviechallenge.presenter.viewmodel.TvShowViewModel
 import com.highquality.base.BaseFragment
@@ -13,12 +14,14 @@ class TvShowListFragment : BaseFragment<FragmentTvShowListBinding>() {
     override fun getViewModel(): BaseViewModel = viewModel
 
     override fun init() {
-
         setupObserversViewModel()
+        viewModel.fetchTvShows()
     }
 
     override fun setupObserversViewModel() {
-
+        viewModel.tvShowLiveData.observe(this, {
+            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+        })
     }
 
 
