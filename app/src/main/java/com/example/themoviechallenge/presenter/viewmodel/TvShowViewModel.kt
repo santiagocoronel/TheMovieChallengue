@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.themoviechallenge.domain.GetRelatedTvShowUseCase
 import com.example.themoviechallenge.domain.GetTvShowUseCase
 import com.example.themoviechallenge.domain.model.TvShow
+import com.example.themoviechallenge.presenter.model.TvShowModel
+import com.example.themoviechallenge.presenter.model.mapper.TvShowMapper
 import com.highquality.base.BaseViewModel
 import com.highquality.base.Response
 import kotlinx.coroutines.flow.collect
@@ -18,19 +20,31 @@ class TvShowViewModel(
     private val getTvShowUseCase: GetTvShowUseCase
 ) : BaseViewModel() {
 
-    //region tv shows list
-    private val mutableTvShowList: MutableLiveData<List<TvShow>> = MutableLiveData()
-    val tvShowLiveData: LiveData<List<TvShow>> get() = mutableTvShowList
+    //region page
+    private val mutablePageTvShowList: MutableLiveData<Int> = MutableLiveData(1)
     //endregion
 
-    fun fetchTvShows() {
-        viewModelScope.launch {
+    //region tv shows list
+    private val mutableTvShowList: MutableLiveData<List<TvShowModel>> = MutableLiveData()
+    val tvShowLiveData: LiveData<List<TvShowModel>> get() = mutableTvShowList
+    //endregion
 
-            getTvShowUseCase.bind(language = null, page = 1)
+    //region tv shows related list
+    private val mutableTvShowRelatedList: MutableLiveData<List<TvShowModel>> = MutableLiveData()
+    val tvShowRelatedLiveData: LiveData<List<TvShowModel>> get() = mutableTvShowRelatedList
+    //endregion
+
+    fun fetchTvShows(firstTime: Boolean = false) {
+        viewModelScope.launch {
+            if (firstTime) notifyShowLoading()
+            getTvShowUseCase.bind(language = null, page = mutablePageTvShowList.value!!)
             executeSimpleUseCase(getTvShowUseCase).single().collect {
+                notifyRemoveLoading()
                 when (it) {
                     is Response.Success<List<TvShow>> -> {
-                        mutableTvShowList.value = it.data
+                        mutableTvShowList.value =
+                            it.data.map { item -> TvShowMapper.toTvShow(item) }
+                        mutablePageTvShowList.value = mutablePageTvShowList.value!! + 1
                     }
                     is Response.Failure<Exception> -> {
                         mutableThrowables.value = it.error
@@ -39,5 +53,29 @@ class TvShowViewModel(
             }
 
         }
+    }
+
+    fun fetchTvShowsRelated(tvId: String) {
+        viewModelScope.launch {
+            notifyShowLoading()
+            getRelatedTvShowUseCase.bind(tvId = tvId, language = null, page = 1)
+            executeSimpleUseCase(getRelatedTvShowUseCase).single().collect {
+                notifyRemoveLoading()
+                when (it) {
+                    is Response.Success<List<TvShow>> -> {
+                        mutableTvShowRelatedList.value =
+                            it.data.map { item -> TvShowMapper.toTvShow(item) }
+                    }
+                    is Response.Failure<Exception> -> {
+                        mutableThrowables.value = it.error
+                    }
+                }
+            }
+
+        }
+    }
+
+    fun resetPagination() {
+        mutablePageTvShowList.value = 1
     }
 }

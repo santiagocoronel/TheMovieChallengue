@@ -1,4 +1,4 @@
-package com.example.themoviechallenge.data.repository.network.response.mapper
+package com.example.themoviechallenge.domain.model.mapper
 
 import com.example.themoviechallenge.data.repository.network.response.TvPageResponse
 import com.example.themoviechallenge.domain.model.TvShow
@@ -8,17 +8,17 @@ object TvPageResponseMapper {
     fun toTvShow(response: TvPageResponse): List<TvShow> {
         return response.results?.map {
             TvShow(
-                backdropPath = it.backdropPath!!,
-                firstAirDate = it.firstAirDate!!,
+                backdropPath = it.backdropPath ?: "",
+                firstAirDate = it.firstAirDate ?: "",
                 genreIds = it.genreIds!!,
                 id = it.id!!,
-                name = it.name!!,
+                name = it.name ?: "",
                 originCountry = it.originCountry!!,
-                originalLanguage = it.originalLanguage!!,
-                originalName = it.originalName!!,
-                overview = it.overview!!,
+                originalLanguage = it.originalLanguage ?: "",
+                originalName = it.originalName ?: "",
+                overview = it.overview ?: "",
                 popularity = it.popularity!!,
-                posterPath = it.posterPath!!,
+                posterPath = it.posterPath ?: "",
                 voteAverage = it.voteAverage!!,
                 voteCount = it.voteCount!!
             )

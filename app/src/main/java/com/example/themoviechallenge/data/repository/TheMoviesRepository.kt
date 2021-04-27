@@ -2,7 +2,7 @@ package com.example.themoviechallenge.data.repository
 
 import com.example.themoviechallenge.BuildConfig
 import com.example.themoviechallenge.data.repository.network.api.TheMoviesApi
-import com.example.themoviechallenge.data.repository.network.response.mapper.TvPageResponseMapper
+import com.example.themoviechallenge.domain.model.mapper.TvPageResponseMapper
 import com.example.themoviechallenge.domain.model.TvShow
 import com.example.themoviechallenge.domain.repository.IGetRelatedTvShowRepository
 import com.example.themoviechallenge.domain.repository.IGetTvShowRepository
