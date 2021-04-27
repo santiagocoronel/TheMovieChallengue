@@ -1,5 +1,9 @@
 package com.example.themoviechallenge.presenter.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class TvShowModel(
     val backdropPath: String = "",
     val firstAirDate: String = "",
@@ -14,4 +18,4 @@ data class TvShowModel(
     val posterPath: String = "",
     val voteAverage: Double = 0.0,
     val voteCount: Int = 0
-)
+) : Parcelable

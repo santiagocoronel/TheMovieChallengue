@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">TheMovieChallengue</string>
-
+    <string name="fragment_tv_show_list_toolbar_title">Tv Show Popular</string>
 </resources>

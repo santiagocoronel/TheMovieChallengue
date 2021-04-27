@@ -18,5 +18,14 @@
         android:id="@+id/tvShowDetailFragment"
         android:name="com.example.themoviechallenge.presenter.TvShowDetailFragment"
         android:label="fragment_tv_show_detail"
-        tools:layout="@layout/fragment_tv_show_detail" />
+        tools:layout="@layout/fragment_tv_show_detail" >
+        <argument
+            android:name="tvShowModel"
+            app:argType="com.example.themoviechallenge.presenter.model.TvShowModel" />
+        <action
+            android:id="@+id/action_tvShowDetailFragment_self"
+            app:destination="@id/tvShowDetailFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
+    </fragment>
 </navigation>

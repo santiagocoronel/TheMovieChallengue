@@ -29,6 +29,10 @@ class TvShowViewModel(
     val tvShowLiveData: LiveData<List<TvShowModel>> get() = mutableTvShowList
     //endregion
 
+    //region page
+    private val mutablePageTvShowRelatedList: MutableLiveData<Int> = MutableLiveData(1)
+    //endregion
+
     //region tv shows related list
     private val mutableTvShowRelatedList: MutableLiveData<List<TvShowModel>> = MutableLiveData()
     val tvShowRelatedLiveData: LiveData<List<TvShowModel>> get() = mutableTvShowRelatedList
@@ -57,10 +61,8 @@ class TvShowViewModel(
 
     fun fetchTvShowsRelated(tvId: String) {
         viewModelScope.launch {
-            notifyShowLoading()
             getRelatedTvShowUseCase.bind(tvId = tvId, language = null, page = 1)
             executeSimpleUseCase(getRelatedTvShowUseCase).single().collect {
-                notifyRemoveLoading()
                 when (it) {
                     is Response.Success<List<TvShow>> -> {
                         mutableTvShowRelatedList.value =
@@ -75,7 +77,11 @@ class TvShowViewModel(
         }
     }
 
-    fun resetPagination() {
+    fun resetPaginationPageTvShowList() {
         mutablePageTvShowList.value = 1
+    }
+
+    fun resetPaginationPageTvShowRelatedList() {
+        mutablePageTvShowRelatedList.value = 1
     }
 }

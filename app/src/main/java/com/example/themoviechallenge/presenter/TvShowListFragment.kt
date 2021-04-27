@@ -2,7 +2,6 @@ package com.example.themoviechallenge.presenter
 
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.themoviechallenge.R
@@ -27,20 +26,26 @@ class TvShowListFragment : BaseFragment<FragmentTvShowListBinding>(),
 
     override fun init() {
         setupObserversViewModel()
-        viewModel.fetchTvShows(firstTime = true)
+        if (!this::adapter.isInitialized) {
+            viewModel.fetchTvShows(firstTime = true)
+        }
         bindData()
     }
 
     private fun bindData() {
         initRecyclerView()
-        binding.layoutAppBar.textViewToolbarTitle.text = "Tv Show Popular"
+        binding.layoutAppBar.textViewToolbarTitle.text =
+            getString(R.string.fragment_tv_show_list_toolbar_title)
         binding.swiperefresh.setOnRefreshListener {
-            viewModel.resetPagination()
+            viewModel.resetPaginationPageTvShowList()
             adapter.clear()
             viewModel.fetchTvShows(firstTime = true)
         }
         binding.fabGoUp.setOnClickListener {
             binding.recyclerview.layoutManager?.scrollToPosition(0)
+        }
+        binding.layoutGenericError.textviewTry.setOnClickListener {
+            viewModel.fetchTvShows()
         }
     }
 
@@ -54,13 +59,17 @@ class TvShowListFragment : BaseFragment<FragmentTvShowListBinding>(),
                 binding.layoutLoading.root.visibility = View.GONE
             }
         })
+        viewModel.mutableThrowables.observe(this, Observer {
+            showGenericError(true)
+        })
         viewModel.tvShowLiveData.observe(this, { list ->
 
             if (binding.swiperefresh.isRefreshing) binding.swiperefresh.isRefreshing = false
 
             if (list.isEmpty()) {
-                //show empty state
+                showEmptyState(true)
             } else {
+                showEmptyState(false)
                 adapter.removeLoading()
                 adapter.addAll(list)
                 adapter.notifyDataSetChanged()
@@ -78,7 +87,8 @@ class TvShowListFragment : BaseFragment<FragmentTvShowListBinding>(),
     }
 
     override fun onClick(item: TvShowModel, position: Int) {
-        val action = TvShowListFragmentDirections.actionTvShowListFragmentToTvShowDetailFragment()
+        val action =
+            TvShowListFragmentDirections.actionTvShowListFragmentToTvShowDetailFragment(item)
         findNavController().navigate(action)
     }
 
@@ -105,7 +115,26 @@ class TvShowListFragment : BaseFragment<FragmentTvShowListBinding>(),
     }
 
     private fun showEmptyState(value: Boolean) {
-
+        if (value) {
+            binding.layoutWithoutResults.root.visibility = View.VISIBLE
+            binding.container.rootView.visibility = View.GONE
+        } else {
+            binding.layoutWithoutResults.root.visibility = View.GONE
+            binding.container.rootView.visibility = View.VISIBLE
+        }
     }
 
+    private fun showGenericError(value: Boolean) {
+        if (value) {
+            binding.layoutGenericError.root.visibility = View.VISIBLE
+            binding.container.rootView.visibility = View.GONE
+        } else {
+            binding.layoutGenericError.root.visibility = View.GONE
+            binding.container.rootView.visibility = View.VISIBLE
+        }
+    }
+
+    override fun throwError(throwable: Throwable?) {
+        //invalidate action
+    }
 }

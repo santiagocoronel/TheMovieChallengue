@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_gray_1">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -37,7 +36,6 @@
             android:layout_marginTop="30dp"
             android:fontFamily="@font/gilroy_bold"
             android:text="@string/time_of_response_too_long"
-            android:textColor="@color/text_color_base_layout"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -53,7 +51,6 @@
             android:clickable="true"
             android:fontFamily="@font/gilroy_medium"
             android:text="@string/try_again"
-            android:textColor="@color/text_color_base_layout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

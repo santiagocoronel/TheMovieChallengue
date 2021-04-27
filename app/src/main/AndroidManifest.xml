@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.themoviechallenge">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="com.example.themoviechallenge.TheMovieChallengeApp"
         android:allowBackup="true"
@@ -12,6 +14,7 @@
         android:theme="@style/Theme.TheMovieChallenge">
         <activity
             android:name="com.example.themoviechallenge.presenter.TvShowActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.TheMovieChallenge.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

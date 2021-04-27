@@ -35,7 +35,6 @@ class TvShowAdapter(
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                //first position is not visible
                 if (linearLayoutManager.findFirstVisibleItemPosition() > 0) {
                     if (isFirstPositionVisible) {
                         listener.firstPositionIsVisible(false)
