@@ -6,11 +6,15 @@ import com.example.themoviechallenge.domain.model.mapper.TvPageResponseMapper
 import com.example.themoviechallenge.domain.model.TvShow
 import com.example.themoviechallenge.domain.repository.IGetRelatedTvShowRepository
 import com.example.themoviechallenge.domain.repository.IGetTvShowRepository
-import com.highquality.base.GenericException
+import com.highquality.base.exception.GenericException
 import com.highquality.base.Response
+import com.highquality.base.exception.NoInternetException
+import com.highquality.base.exception.ServiceErrorException
+import com.highquality.base.exception.UnAuthorizeException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import java.net.UnknownHostException
 
 class TheMoviesRepository(private val theMoviesApi: TheMoviesApi) : IGetTvShowRepository,
     IGetRelatedTvShowRepository {
@@ -35,7 +39,7 @@ class TheMoviesRepository(private val theMoviesApi: TheMoviesApi) : IGetTvShowRe
             401 -> {
                 emit(
                     Response.Failure(
-                        GenericException(
+                        UnAuthorizeException(
                             statusCode = 401,
                             statusMessage = "Credentials Error"
                         )
@@ -45,7 +49,7 @@ class TheMoviesRepository(private val theMoviesApi: TheMoviesApi) : IGetTvShowRe
             404 -> {
                 emit(
                     Response.Failure(
-                        GenericException(
+                        ServiceErrorException(
                             statusCode = 401,
                             statusMessage = "Unknow endpoint"
                         )
@@ -66,14 +70,25 @@ class TheMoviesRepository(private val theMoviesApi: TheMoviesApi) : IGetTvShowRe
 
     }.catch {
         it.printStackTrace()
-        emit(
-            Response.Failure(
-                GenericException(
-                    statusCode = 999,
-                    statusMessage = "Something unexpected happened"
+        if (it is UnknownHostException) {
+            emit(
+                Response.Failure(
+                    NoInternetException(
+                        statusCode = 999,
+                        statusMessage = "Something unexpected happened"
+                    )
                 )
             )
-        )
+        } else {
+            emit(
+                Response.Failure(
+                    GenericException(
+                        statusCode = 999,
+                        statusMessage = "Something unexpected happened"
+                    )
+                )
+            )
+        }
     }
 
     override suspend fun getRelatedTvShows(
@@ -97,7 +112,7 @@ class TheMoviesRepository(private val theMoviesApi: TheMoviesApi) : IGetTvShowRe
             401 -> {
                 emit(
                     Response.Failure(
-                        GenericException(
+                        UnAuthorizeException(
                             statusCode = 401,
                             statusMessage = "Credentials Error"
                         )
@@ -107,7 +122,7 @@ class TheMoviesRepository(private val theMoviesApi: TheMoviesApi) : IGetTvShowRe
             404 -> {
                 emit(
                     Response.Failure(
-                        GenericException(
+                        ServiceErrorException(
                             statusCode = 401,
                             statusMessage = "Unknow endpoint"
                         )
@@ -128,14 +143,25 @@ class TheMoviesRepository(private val theMoviesApi: TheMoviesApi) : IGetTvShowRe
 
     }.catch {
         it.printStackTrace()
-        emit(
-            Response.Failure(
-                GenericException(
-                    statusCode = 999,
-                    statusMessage = "Something unexpected happened"
+        if (it is UnknownHostException) {
+            emit(
+                Response.Failure(
+                    NoInternetException(
+                        statusCode = 999,
+                        statusMessage = "Something unexpected happened"
+                    )
                 )
             )
-        )
+        } else {
+            emit(
+                Response.Failure(
+                    GenericException(
+                        statusCode = 999,
+                        statusMessage = "Something unexpected happened"
+                    )
+                )
+            )
+        }
     }
 
 }

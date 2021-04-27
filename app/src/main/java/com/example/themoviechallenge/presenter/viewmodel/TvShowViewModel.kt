@@ -10,10 +10,11 @@ import com.example.themoviechallenge.presenter.model.TvShowModel
 import com.example.themoviechallenge.presenter.model.mapper.TvShowMapper
 import com.highquality.base.BaseViewModel
 import com.highquality.base.Response
+import com.highquality.base.exception.NoInternetException
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.launch
-import java.lang.Exception
+import kotlin.Exception
 
 class TvShowViewModel(
     private val getRelatedTvShowUseCase: GetRelatedTvShowUseCase,
@@ -51,7 +52,14 @@ class TvShowViewModel(
                         mutablePageTvShowList.value = mutablePageTvShowList.value!! + 1
                     }
                     is Response.Failure<Exception> -> {
-                        mutableThrowables.value = it.error
+                        when (it.error) {
+                            is NoInternetException -> {
+                                mutableConnection.value = false
+                            }
+                            else -> {
+                                notifyError(it.error)
+                            }
+                        }
                     }
                 }
             }
@@ -69,7 +77,14 @@ class TvShowViewModel(
                             it.data.map { item -> TvShowMapper.toTvShow(item) }
                     }
                     is Response.Failure<Exception> -> {
-                        mutableThrowables.value = it.error
+                        when (it.error) {
+                            is NoInternetException -> {
+                                mutableConnection.value = false
+                            }
+                            else -> {
+                                notifyError(it.error)
+                            }
+                        }
                     }
                 }
             }

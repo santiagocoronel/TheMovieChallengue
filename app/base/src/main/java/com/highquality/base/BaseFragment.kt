@@ -86,7 +86,7 @@ abstract class BaseFragment<T : ViewBinding> : Fragment(),
         }
     }
 
-    private fun observerCommons() {
+    protected open fun observerCommons() {
         getViewModel()?.mutableThrowables?.observe(this) { mThrow -> throwError(mThrow) }
         getViewModel()?.mutableConnection?.observe(
             this

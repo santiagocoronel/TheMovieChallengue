@@ -17,6 +17,7 @@ abstract class BaseViewModel : ViewModel() {
     var mutableThrowables = MutableLiveData<Throwable?>()
 
     fun <T> executeSimpleUseCase(useCase: BaseUseCase<T>): Flow<T> = flow {
+        notifyConnection()
         executeUseCase(useCase, this)
     }.flowOn(Dispatchers.Main)
         .catch { it.printStackTrace() }
@@ -36,6 +37,10 @@ abstract class BaseViewModel : ViewModel() {
 
     fun notifyRemoveLoading() {
         mutableLoading.value = false
+    }
+
+    private fun notifyConnection() {
+        mutableConnection.postValue(true)
     }
 
     private fun notifyNoConnection() {

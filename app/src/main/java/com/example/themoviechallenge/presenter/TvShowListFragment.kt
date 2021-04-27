@@ -2,6 +2,7 @@ package com.example.themoviechallenge.presenter
 
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.themoviechallenge.R
@@ -47,20 +48,26 @@ class TvShowListFragment : BaseFragment<FragmentTvShowListBinding>(),
         binding.layoutGenericError.textviewTry.setOnClickListener {
             viewModel.fetchTvShows()
         }
+        binding.layoutNoConnection.textviewTry.setOnClickListener {
+            viewModel.fetchTvShows()
+        }
     }
 
     override fun setupObserversViewModel() {
         viewModel.mutableLoading.observe(this, Observer {
             if (it) {
-                binding.container.rootView.visibility = View.GONE
+                binding.mainContainer.visibility = View.GONE
                 binding.layoutLoading.root.visibility = View.VISIBLE
             } else {
-                binding.container.rootView.visibility = View.VISIBLE
+                binding.mainContainer.visibility = View.VISIBLE
                 binding.layoutLoading.root.visibility = View.GONE
             }
         })
+        viewModel.mutableConnection.observe(this, Observer {
+            showNoConnection(it)
+        })
         viewModel.mutableThrowables.observe(this, Observer {
-            showGenericError(true)
+            showGenericError(it != null)
         })
         viewModel.tvShowLiveData.observe(this, { list ->
 
@@ -117,24 +124,35 @@ class TvShowListFragment : BaseFragment<FragmentTvShowListBinding>(),
     private fun showEmptyState(value: Boolean) {
         if (value) {
             binding.layoutWithoutResults.root.visibility = View.VISIBLE
-            binding.container.rootView.visibility = View.GONE
+            binding.mainContainer.visibility = View.GONE
         } else {
             binding.layoutWithoutResults.root.visibility = View.GONE
-            binding.container.rootView.visibility = View.VISIBLE
+            binding.mainContainer.visibility = View.VISIBLE
         }
     }
 
     private fun showGenericError(value: Boolean) {
         if (value) {
             binding.layoutGenericError.root.visibility = View.VISIBLE
-            binding.container.rootView.visibility = View.GONE
+            binding.mainContainer.visibility = View.GONE
         } else {
             binding.layoutGenericError.root.visibility = View.GONE
-            binding.container.rootView.visibility = View.VISIBLE
+            binding.mainContainer.visibility = View.VISIBLE
         }
     }
 
-    override fun throwError(throwable: Throwable?) {
-        //invalidate action
+    private fun showNoConnection(value: Boolean) {
+        if (value) {
+            binding.layoutNoConnection.container.visibility = View.GONE
+            binding.mainContainer.visibility = View.VISIBLE
+        } else {
+            Toast.makeText(requireContext(), "No internet connection", Toast.LENGTH_SHORT).show()
+            binding.layoutNoConnection.container.visibility = View.VISIBLE
+            binding.mainContainer.visibility = View.GONE
+        }
+    }
+
+    override fun observerCommons() {
+        //no require observe commons
     }
 }

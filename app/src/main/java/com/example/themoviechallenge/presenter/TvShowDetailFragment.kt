@@ -40,7 +40,6 @@ class TvShowDetailFragment : BaseFragment<FragmentTvShowDetailBinding>(),
 
     private fun bindData() {
         val item = navArgs.tvShowModel
-
         with(binding) {
             Glide.with(imageview)
                 .load("https://image.tmdb.org/t/p/w500/${item.posterPath}")
@@ -53,19 +52,30 @@ class TvShowDetailFragment : BaseFragment<FragmentTvShowDetailBinding>(),
 
             textviewRate.text = "${item.voteAverage}"
         }
-
         initRecyclerView()
+        binding.layoutGenericError.textviewTry.setOnClickListener {
+            viewModel.fetchTvShows()
+        }
+        binding.layoutNoConnection.textviewTry.setOnClickListener {
+            viewModel.fetchTvShows()
+        }
     }
 
     override fun setupObserversViewModel() {
         viewModel.mutableLoading.observe(this, Observer {
             if (it) {
-                binding.container.rootView.visibility = View.GONE
+                binding.mainContainer.visibility = View.GONE
                 binding.layoutLoading.root.visibility = View.VISIBLE
             } else {
-                binding.container.rootView.visibility = View.VISIBLE
+                binding.mainContainer.visibility = View.VISIBLE
                 binding.layoutLoading.root.visibility = View.GONE
             }
+        })
+        viewModel.mutableConnection.observe(this, Observer {
+            showNoConnection(it)
+        })
+        viewModel.mutableThrowables.observe(this, Observer {
+            showGenericError(it != null)
         })
         viewModel.tvShowRelatedLiveData.observe(this, { list ->
             val startPosition = adapter.itemCount - 1
@@ -103,5 +113,30 @@ class TvShowDetailFragment : BaseFragment<FragmentTvShowDetailBinding>(),
 
     override fun firstPositionIsVisible(value: Boolean) {
 
+    }
+
+    private fun showGenericError(value: Boolean) {
+        if (value) {
+            binding.layoutGenericError.root.visibility = View.VISIBLE
+            binding.mainContainer.visibility = View.GONE
+        } else {
+            binding.layoutGenericError.root.visibility = View.GONE
+            binding.mainContainer.visibility = View.VISIBLE
+        }
+    }
+
+    private fun showNoConnection(value: Boolean) {
+        if (value) {
+            binding.layoutNoConnection.container.visibility = View.GONE
+            binding.mainContainer.visibility = View.VISIBLE
+        } else {
+            Toast.makeText(requireContext(), "No internet connection", Toast.LENGTH_SHORT).show()
+            binding.layoutNoConnection.container.visibility = View.VISIBLE
+            binding.mainContainer.visibility = View.GONE
+        }
+    }
+
+    override fun observerCommons() {
+        //no require observe commons
     }
 }
