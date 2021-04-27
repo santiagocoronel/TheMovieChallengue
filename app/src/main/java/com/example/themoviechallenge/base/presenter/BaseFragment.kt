@@ -1,4 +1,4 @@
-package com.highquality.base
+package com.example.themoviechallenge.base.presenter
 
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.highquality.base.dialog.GenericErrorDialog
+import com.example.themoviechallenge.base.R
+import com.example.themoviechallenge.base.dialog.GenericErrorDialog
 import java.lang.reflect.ParameterizedType
 import java.util.*
 

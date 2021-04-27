@@ -1,4 +1,4 @@
-package com.example.themoviechallenge
+package com.example.themoviechallenge.base
 
 import org.junit.Test
 

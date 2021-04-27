@@ -11,8 +11,8 @@ import com.example.themoviechallenge.presenter.adapter.TvShowAdapter
 import com.example.themoviechallenge.presenter.adapter.ViewHolderListener
 import com.example.themoviechallenge.presenter.model.TvShowModel
 import com.example.themoviechallenge.presenter.viewmodel.TvShowViewModel
-import com.highquality.base.BaseFragment
-import com.highquality.base.BaseViewModel
+import com.example.themoviechallenge.base.presenter.BaseFragment
+import com.example.themoviechallenge.base.presenter.BaseViewModel
 import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 

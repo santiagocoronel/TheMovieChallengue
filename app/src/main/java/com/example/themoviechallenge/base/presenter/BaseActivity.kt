@@ -1,4 +1,4 @@
-package com.highquality.base
+package com.example.themoviechallenge.base.presenter
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle

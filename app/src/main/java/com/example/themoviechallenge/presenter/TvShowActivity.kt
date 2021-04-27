@@ -1,10 +1,7 @@
 package com.example.themoviechallenge.presenter
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.example.themoviechallenge.R
 import com.example.themoviechallenge.databinding.ActivityTvShowBinding
-import com.highquality.base.BaseActivity
+import com.example.themoviechallenge.base.presenter.BaseActivity
 
 class TvShowActivity : BaseActivity<ActivityTvShowBinding>() {
 

@@ -8,9 +8,9 @@ import com.example.themoviechallenge.domain.GetTvShowUseCase
 import com.example.themoviechallenge.domain.model.TvShow
 import com.example.themoviechallenge.presenter.model.TvShowModel
 import com.example.themoviechallenge.presenter.model.mapper.TvShowMapper
-import com.highquality.base.BaseViewModel
-import com.highquality.base.Response
-import com.highquality.base.exception.NoInternetException
+import com.example.themoviechallenge.base.presenter.BaseViewModel
+import com.example.themoviechallenge.base.data.Response
+import com.example.themoviechallenge.base.exception.NoInternetException
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.launch

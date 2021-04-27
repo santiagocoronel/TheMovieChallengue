@@ -1,4 +1,4 @@
-package com.highquality.base.exception
+package com.example.themoviechallenge.base.exception
 
 data class NoInternetException(
     val statusCode: Int,

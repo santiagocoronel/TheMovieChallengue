@@ -2,8 +2,8 @@ package com.example.themoviechallenge.domain
 
 import com.example.themoviechallenge.domain.model.TvShow
 import com.example.themoviechallenge.domain.repository.IGetTvShowRepository
-import com.highquality.base.BaseUseCase
-import com.highquality.base.Response
+import com.example.themoviechallenge.base.domain.BaseUseCase
+import com.example.themoviechallenge.base.data.Response
 import kotlinx.coroutines.flow.Flow
 
 class GetTvShowUseCase(private val repository: IGetTvShowRepository) :

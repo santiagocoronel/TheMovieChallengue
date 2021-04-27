@@ -10,13 +10,12 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.themoviechallenge.R
 import com.example.themoviechallenge.databinding.FragmentTvShowDetailBinding
-import com.example.themoviechallenge.presenter.adapter.TvShowAdapter
 import com.example.themoviechallenge.presenter.adapter.TvShowRelatedAdapter
 import com.example.themoviechallenge.presenter.adapter.ViewHolderListener
 import com.example.themoviechallenge.presenter.model.TvShowModel
 import com.example.themoviechallenge.presenter.viewmodel.TvShowViewModel
-import com.highquality.base.BaseFragment
-import com.highquality.base.BaseViewModel
+import com.example.themoviechallenge.base.presenter.BaseFragment
+import com.example.themoviechallenge.base.presenter.BaseViewModel
 import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 

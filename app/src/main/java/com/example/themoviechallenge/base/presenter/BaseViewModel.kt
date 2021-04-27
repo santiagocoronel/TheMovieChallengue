@@ -1,7 +1,8 @@
-package com.highquality.base
+package com.example.themoviechallenge.base.presenter
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.themoviechallenge.base.domain.BaseUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector

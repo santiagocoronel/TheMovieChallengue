@@ -1,4 +1,4 @@
-package com.highquality.base
+package com.example.themoviechallenge.base.data
 
 sealed class Response<out T> {
     data class Success<out T>(val data: T) : Response<T>()

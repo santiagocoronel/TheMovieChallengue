@@ -1,4 +1,4 @@
-package com.highquality.base.exception
+package com.example.themoviechallenge.base.exception
 
 data class GenericException(
     val statusCode: Int,
