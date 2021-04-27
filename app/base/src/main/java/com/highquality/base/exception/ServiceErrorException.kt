@@ -1,4 +1,4 @@
-package com.example.themoviechallenge.base.exception
+package com.highquality.base.exception
 
 data class ServiceErrorException(
     val statusCode: Int,

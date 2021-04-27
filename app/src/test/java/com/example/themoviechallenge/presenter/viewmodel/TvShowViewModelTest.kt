@@ -2,7 +2,7 @@ package com.example.themoviechallenge.presenter.viewmodel
 
 import androidx.lifecycle.Observer
 import com.example.themoviechallenge.base.BaseUnitTest
-import com.example.themoviechallenge.base.data.Response
+import com.highquality.base.data.Response
 import com.example.themoviechallenge.domain.GetRelatedTvShowUseCase
 import com.example.themoviechallenge.domain.GetTvShowUseCase
 import com.example.themoviechallenge.domain.model.TvShow

@@ -1,4 +1,4 @@
-package com.example.themoviechallenge.base.domain
+package com.highquality.base.domain
 
 abstract class BaseUseCase<T> {
 

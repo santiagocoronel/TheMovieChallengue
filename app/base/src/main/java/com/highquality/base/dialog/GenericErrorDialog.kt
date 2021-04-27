@@ -1,4 +1,4 @@
-package com.example.themoviechallenge.base.dialog
+package com.highquality.base.dialog
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
-import com.example.themoviechallenge.base.presenter.BaseActivity
+import com.highquality.base.presenter.BaseActivity
 import com.example.themoviechallenge.base.R
 import com.example.themoviechallenge.base.databinding.DialogGenericErrorBinding
 

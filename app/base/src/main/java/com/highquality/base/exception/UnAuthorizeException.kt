@@ -1,4 +1,4 @@
-package com.example.themoviechallenge.base.exception
+package com.highquality.base.exception
 
 class UnAuthorizeException(
     val statusCode: Int,

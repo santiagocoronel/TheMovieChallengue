@@ -3,12 +3,11 @@ package com.example.themoviechallenge.data.repository
 import com.example.themoviechallenge.BuildConfig
 import com.example.themoviechallenge.data.repository.network.api.TheMoviesApi
 import com.example.themoviechallenge.data.repository.network.response.TvPageResponse
-import com.example.themoviechallenge.base.data.Response
+import com.highquality.base.data.Response
 import com.example.themoviechallenge.base.BaseUnitTest
-import com.example.themoviechallenge.base.exception.GenericException
-import com.example.themoviechallenge.base.exception.NoInternetException
-import com.example.themoviechallenge.base.exception.ServiceErrorException
-import com.example.themoviechallenge.base.exception.UnAuthorizeException
+import com.highquality.base.exception.GenericException
+import com.highquality.base.exception.ServiceErrorException
+import com.highquality.base.exception.UnAuthorizeException
 import com.example.themoviechallenge.data.repository.network.response.TvResponse
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
@@ -19,7 +18,6 @@ import org.junit.Test
 import org.mockito.BDDMockito
 import org.mockito.Mock
 import org.mockito.Mockito
-import java.net.UnknownHostException
 
 class TheMoviesRepositoryTest : BaseUnitTest() {
 

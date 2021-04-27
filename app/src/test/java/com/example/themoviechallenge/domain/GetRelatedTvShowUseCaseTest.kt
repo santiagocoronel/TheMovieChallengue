@@ -1,12 +1,11 @@
 package com.example.themoviechallenge.domain
 
 import com.example.themoviechallenge.base.BaseUnitTest
-import com.example.themoviechallenge.base.data.Response
+import com.highquality.base.data.Response
 import com.example.themoviechallenge.domain.model.TvShow
 import com.example.themoviechallenge.domain.repository.IGetRelatedTvShowRepository
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert
 import org.junit.Before

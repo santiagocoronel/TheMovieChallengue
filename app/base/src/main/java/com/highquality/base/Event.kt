@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.themoviechallenge.base
+package com.highquality.base
 
 /**
  * Used as a wrapper for data that is exposed via a LiveData that represents an event.

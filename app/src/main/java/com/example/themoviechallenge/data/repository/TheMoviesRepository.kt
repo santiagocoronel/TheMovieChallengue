@@ -6,11 +6,11 @@ import com.example.themoviechallenge.domain.model.mapper.TvPageResponseMapper
 import com.example.themoviechallenge.domain.model.TvShow
 import com.example.themoviechallenge.domain.repository.IGetRelatedTvShowRepository
 import com.example.themoviechallenge.domain.repository.IGetTvShowRepository
-import com.example.themoviechallenge.base.exception.GenericException
-import com.example.themoviechallenge.base.data.Response
-import com.example.themoviechallenge.base.exception.NoInternetException
-import com.example.themoviechallenge.base.exception.ServiceErrorException
-import com.example.themoviechallenge.base.exception.UnAuthorizeException
+import com.highquality.base.exception.GenericException
+import com.highquality.base.data.Response
+import com.highquality.base.exception.NoInternetException
+import com.highquality.base.exception.ServiceErrorException
+import com.highquality.base.exception.UnAuthorizeException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
