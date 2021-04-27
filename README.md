@@ -9,12 +9,14 @@ This application was make this various tecnologies and technicles:
 * Clean Code - Solid Principles.
 * Repository Pattern.
 * Kotlin.
+* Koin For Dependecy Injection.
 * Coroutines & Flows.
 * Retrofit.
 * Dto , UseCase model, and model of View.
 * Mappers.
 * Unit Test for Repository, Usecase and ViewModel.
-* base module for base classes.
+* Base module for base classes.
+* Some Animations.
 
 And here is the monday related of the project, i can´t complete all of thing, but maybe i a future i can do it.
 
